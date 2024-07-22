@@ -40,6 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta name="theme-color" content="#000000" />
         <meta property="og:image" content="/words/og.png" />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:image" content="/words/og.png" />
