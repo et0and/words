@@ -1,5 +1,6 @@
 "use client";
 
+import ClipLoader from "react-spinners/ClipLoader";
 import { useState, useEffect } from "react";
 import MarkovChain from "./utils/markovChain";
 import FadingText from "./components/FadingText";
@@ -12,7 +13,7 @@ export default function Home() {
   useEffect(() => {
     async function generateSequence() {
       try {
-        const sampleText = await fetchText("/words.txt");
+        const sampleText = await fetchText("/words/words.txt");
         const markovChain = new MarkovChain(sampleText);
         const newSequence = markovChain.generateSequence(500);
         setSequence(newSequence);
@@ -25,6 +26,19 @@ export default function Home() {
 
     generateSequence();
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center p-24">
+        <ClipLoader
+          color={"#ffffff"}
+          size={50}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
+  }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
